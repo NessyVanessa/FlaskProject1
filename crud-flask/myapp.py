@@ -23,58 +23,56 @@ cursor = connection.cursor()
 @app.route("/")
 def index():
 
-    if 'is_logged_in' in session:
+
         cursor.execute("SELECT * FROM delivery")
         records = cursor.fetchall()
         return render_template('delivery.html', data=records)
-    else:
-        return redirect(url_for('login.html'))
 
-@app.route("/login", methods = ['GET','POST'])
-def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        cursor.execute('SELECT * FROM account WHERE username = %s AND password = %s', (username, password))
+# @app.route("/login", methods = ['GET','POST'])
+# def login():
+#     if request.method == 'POST':
+#         username = request.form['username']
+#         password = request.form['password']
+#         cursor.execute('SELECT * FROM account WHERE username = %s AND password = %s', (username, password))
 
-        result = cursor.fetchone()
+#         result = cursor.fetchone()
 
-        if result:
-            session['is_logged_in'] = True
-            session['username']=result[1]
+#         if result:
+#             session['is_logged_in'] = True
+#             session['username']=result[1]
 
-            return redirect(url_for('index'))
+#             return redirect(url_for('index'))
         
-        else:
-            return render_template('login.html')
+#         else:
+#             return render_template('login.html')
         
-    else:
-        return render_template('login.html')
+#     else:
+#         return render_template('login.html')
     
-@app.route("/logout")
-def logout():
-    session.pop('is_logged_in', None)
-    session.pop('username', None)
+# @app.route("/logout")
+# def logout():
+#     session.pop('is_logged_in', None)
+#     session.pop('username', None)
 
-    return redirect(url_for('login'))
+#     return redirect(url_for('login'))
 
-@app.route("/register", methods = ['GET', 'POST'], endpoint = 'register')
-def register(id=None):
+# @app.route("/register", methods = ['GET', 'POST'], endpoint = 'register')
+# def register(id=None):
         
-        if request.method == 'GET':
-             return render_template('register.html')
-        else:
-            username = request.form['username']
-            password = request.form['password']
-            if id is None:
-                    cursor.execute("INSERT INTO account (username,password) VALUES (%s,%s)",(username,password))
-                    connection.commit()
-                    flash('account successfully created')
-            else:
+#         if request.method == 'GET':
+#              return render_template('register.html')
+#         else:
+#             username = request.form['username']
+#             password = request.form['password']
+#             if id is None:
+#                     cursor.execute("INSERT INTO account (username,password) VALUES (%s,%s)",(username,password))
+#                     connection.commit()
+#                     flash('account successfully created')
+#             else:
                     
-                    flash('account already registered') 
+#                     flash('account already registered') 
 
-        return render_template('register.html')
+#         return render_template('register.html')
         
 
 @app.route("/delivery", methods=['GET', 'POST'])
