@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Submit Item</title>
+        <link rel="stylesheet" href="..\static\style.css">
+    </head>
+    <body>
+        <div class="form" style="margin-top: 12%;">    
+            <h1 style="color: rgb(0, 0, 0);">Delivery</h1>
+            <form method="POST" action="" id="form" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="{{ data[0] if data else '' }}">
+                <input type="text" name="driver" value="{{ data[1] if data else '' }}" required class="input" placeholder="driver name">
+                <input type="text" name="category" value="{{ data[2] if data else '' }}" required class="input" placeholder="category"> 
+                <input type="text" name="license" value="{{ data[3] if data else '' }}" required class="input" placeholder="license plate">          
+                <input type="text" name="destination" value="{{ data[4] if data else '' }}" required class="input" placeholder="destination">          
+                <input type="number" name="distance" value="{{ data[5] if data else '' }}" required class="input" placeholder="distance">
+            </form>
+            <div style="margin-top: 25px;">
+                <a href="#" onclick="document.getElementById('form').submit();" style="display: inline-block;" class="btn">Simpan</a>
+                <a href="{{ url_for('index') }}" class="btn" style="display: inline-block;">Kembali</a>
+            </div>
+        </div>
+    </body>
+</html>

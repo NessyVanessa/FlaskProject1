@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="..\static\style.css">
+    <title>Document</title>
+    <script>
+            
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            var messages = {{ messages | safe }};
+            for (var i=0; i<messages.length; i++) {
+            alert(messages[i]); // display the message as an alert
+            }
+            {% endif %}
+            {% endwith %}
+
+        </script>
+</head>
+<body>
+    <div class="form" id="register" style="margin-top: 17%;">
+        <h1 style="color: white;">Register</h1>
+        <form action="" method="post">
+            <input type="text" name="username" id="username" placeholder="Username" class="input" style="margin: auto;">
+            <input type="password" name="password" id="password" placeholder="Password" class="input" style="margin: auto; margin-top: 5px;">
+            <div style="margin-top: 25px; text-align: center;">
+                <input type="submit" value="Register" class="btn" style="display: inline-block; width: 90%; margin: auto; font-size: medium; padding: 15px;">
+                <a href="{{ url_for('login') }}" class="btn" style="padding: 5px; background-color: transparent; margin-top: 25px; margin: auto; margin-top: 5px;">Login Form</a>  
+    
+            </div>
+        </form>
+
+    </div>
+</body>
+</html>
