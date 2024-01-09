@@ -28,7 +28,7 @@ def index():
         records = cursor.fetchall()
         return render_template('delivery.html', data=records)
     else:
-        return redirect(url_for('login'))
+        return redirect(url_for('login.html'))
 
 @app.route("/login", methods = ['GET','POST'])
 def login():
