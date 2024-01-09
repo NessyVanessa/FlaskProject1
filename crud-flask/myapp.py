@@ -26,7 +26,7 @@ def index():
 
         cursor.execute("SELECT * FROM delivery")
         records = cursor.fetchall()
-        return render_template('templates/delivery.html', data=records)
+        return render_template('delivery.html', data=records)
 
 # @app.route("/login", methods = ['GET','POST'])
 # def login():
